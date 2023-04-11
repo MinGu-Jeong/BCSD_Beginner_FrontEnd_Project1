@@ -221,7 +221,7 @@
       );
 
       const phoneNumber = document.getElementById("phone-number");
-      phoneNumber.addEventListener("keyup", (e) => {
+      phoneNumber.addEventListener("keydown", (e) => {
         if (e.key != "Backspace") {
           if (phoneNumber.value.length == 3) {
             phoneNumber.value += "-";
