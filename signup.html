@@ -15,11 +15,10 @@
         margin-left: 10px;
         margin-right: 10px;
       }
-      .nav,
       .nav-pills {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-between;
       }
       nav {
         margin-top: 20px;
@@ -42,19 +41,34 @@
         display: none;
         color: red;
       }
+      #nav-title {
+        display: flex;
+        position: relative;
+        margin-left: 10px;
+        font-weight: bolder;
+      }
+      .nav-right-item {
+        display: flex;
+        justify-content: center;
+      }
     </style>
   </head>
   <body>
     <nav>
       <ul class="nav nav-pills">
-        <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="./login.html">로그인</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active bg-secondary" href="./signup.html"
-            >회원가입</a
-          >
-        </li>
+        <h1 id="nav-title">회원가입</h1>
+        <div class="nav-right-item">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="./login.html"
+              >로그인</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active bg-secondary" href="./signup.html"
+              >회원가입</a
+            >
+          </li>
+        </div>
       </ul>
     </nav>
     <form action="">
