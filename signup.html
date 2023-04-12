@@ -35,6 +35,13 @@
       .btn-outline-secondary {
         margin-right: 10px;
       }
+      .pw-check-view,
+      #check-view-char-limit-10,
+      #check-view-char-limit-num,
+      .email-check-view {
+        display: none;
+        color: red;
+      }
     </style>
   </head>
   <body>
@@ -60,6 +67,9 @@
           placeholder="이메일 형태로 입력해주세요"
         />
       </div>
+      <div class="email-check-view">
+        <p>이메일 형식이 아닙니다</p>
+      </div>
       <div class="mb-3">
         <label for="id" class="form-label">비밀번호</label>
         <input
@@ -78,6 +88,9 @@
           placeholder="비밀번호를 다시 한번 입력해주세요"
         />
       </div>
+      <div class="pw-check-view">
+        <p>비밀번호가 일치하지 않습니다</p>
+      </div>
       <div class="mb-3">
         <label for="student-number" class="form-label">학번</label>
         <input
@@ -86,6 +99,10 @@
           id="student-number"
           placeholder="학번입력시 학과가 자동으로 입력됩니다"
         />
+      </div>
+      <div class="student-number-check-view">
+        <p id="check-view-char-limit-10">학번은 10자리입니다</p>
+        <p id="check-view-char-limit-num">학번은 숫자만 입력 가능합니다</p>
       </div>
       <div class="mb-3">
         <label class="form-label">
@@ -133,28 +150,46 @@
       const emailRegExp =
         /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
       const id = document.getElementById("id");
+      const emailCheckView =
+        document.getElementsByClassName("email-check-view");
       id.addEventListener("blur", () => {
         if (!emailRegExp.test(id.value)) {
-          alert("이메일 형식으로 입력해주세요");
+          emailCheckView[0].style.display = "block";
+        } else {
+          emailCheckView[0].style.display = "none";
         }
       });
       const pw = document.getElementById("pw");
+      const pwCheckView = document.getElementsByClassName("pw-check-view");
       const pwCheck = document.getElementById("pw-check");
       pwCheck.addEventListener("blur", () => {
         if (pw.value !== pwCheck.value) {
-          alert("비밀번호가 일치하지 않습니다");
+          pwCheckView[0].style.display = "block";
+        } else {
+          pwCheckView[0].style.display = "none";
         }
       });
       const studentNumber = document.getElementById("student-number");
+      const studentNumberCheckViewNum10 = document.getElementById(
+        "check-view-char-limit-10"
+      );
+      const studentNumberCheckViewNum = document.getElementById(
+        "check-view-char-limit-num"
+      );
+
       studentNumber.addEventListener("blur", () => {
         if (studentNumber.value.length !== 10) {
-          alert("학번은 10자리입니다");
+          studentNumberCheckViewNum10.style.display = "block";
+        } else {
+          studentNumberCheckViewNum10.style.display = "none";
         }
       });
       const studentNumberRegExp = /^[0-9]*$/;
       studentNumber.addEventListener("blur", () => {
         if (!studentNumberRegExp.test(studentNumber.value)) {
-          alert("학번은 숫자만 입력 가능합니다");
+          studentNumberCheckViewNum.style.display = "block";
+        } else {
+          studentNumberCheckViewNum.style.display = "none";
         }
       });
       const major = document.getElementsByClassName("form-select");
@@ -234,6 +269,16 @@
           } else if (
             phoneNumber.value[2] != "0" &&
             phoneNumber.value.length == 7
+          ) {
+            phoneNumber.value += "-";
+          } else if (
+            phoneNumber.value[1] != "1" &&
+            phoneNumber.value.length == 2
+          ) {
+            phoneNumber.value += "-";
+          } else if (
+            phoneNumber.value[1] != "1" &&
+            phoneNumber.value.length == 6
           ) {
             phoneNumber.value += "-";
           }
