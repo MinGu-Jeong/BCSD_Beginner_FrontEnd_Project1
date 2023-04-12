@@ -272,13 +272,25 @@
           ) {
             phoneNumber.value += "-";
           } else if (
-            phoneNumber.value[1] != "1" &&
+            phoneNumber.value[1] == "2" &&
             phoneNumber.value.length == 2
           ) {
             phoneNumber.value += "-";
           } else if (
-            phoneNumber.value[1] != "1" &&
+            phoneNumber.value[1] == "2" &&
             phoneNumber.value.length == 6
+          ) {
+            phoneNumber.value += "-";
+          } else if (
+            phoneNumber.value[1] != "1" &&
+            phoneNumber.value[1] != "2" &&
+            phoneNumber.value.length == 3
+          ) {
+            phoneNumber.value += "-";
+          } else if (
+            phoneNumber.value[1] != "2" &&
+            phoneNumber.value[1] != "1" &&
+            phoneNumber.value.length == 7
           ) {
             phoneNumber.value += "-";
           }
